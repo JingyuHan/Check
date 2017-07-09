@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="entity.Order_out" table="ORDEROUT">
+        <id name="id" type="int">
+            <generator class="native"/>
+        </id>
+        <property name="ooid" type="java.lang.String" length="16" not-null="true"/>
+		<property name="gname" type="java.lang.String" not-null="true"/>
+		<property name="price" type="int" not-null="true"/>
+		<property name="amount" type="int" not-null="true"/>
+		
+        
+    </class>
+
+</hibernate-mapping>

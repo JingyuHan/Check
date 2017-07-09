@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="entity.Orders" table="ORDERS">
+        <id name="oid" type="java.lang.String" length="16">
+            <generator class="assigned"/>
+        </id>
+        <property name="type" type="boolean" not-null="true"/>
+		<property name="price_sh" type="int" not-null="true"/>
+		<property name="price_ac" type="int" not-null="true"/>
+		<property name="user" type="java.lang.String" not-null="true"/>
+		<property name="customer" type="java.lang.String" not-null="true"/>
+		<property name="date" type="java.util.Date" not-null="true"/>
+		<property name="note" type="java.lang.String"/>
+        
+    </class>
+
+</hibernate-mapping>
