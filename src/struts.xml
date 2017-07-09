@@ -50,7 +50,7 @@
     		
     		<result name="out_query_success">/orders/Orderout_query_success.jsp</result>
     		<result name="out_add_success">/orders/Orderout_add.jsp</result>
-    		<result name="out_detail_success">/orders/Orderout_detail_success.jsp</result>
+    		<result name="out_datail_success">/orders/Orderout_detail_success.jsp</result>
     		<result name="out_delete_success" type="chain">Orderout_query</result>
     		<result name="out_add_fail">/orders/Orderout_add_fail.jsp</result>
     		<result name="out_Result_success">/orders/Resultout_success.jsp</result>

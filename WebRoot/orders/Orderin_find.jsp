@@ -214,6 +214,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <br>
 <br>
 <form name="findForm" action="<%=path%>/orders/Orderin_Result.action" method="post">
+<input name="flag" type="hidden" value="0"/>
+<input name="oi_pageLast" type="hidden" value="0"/>
+<input name="oi_pageNext" type="hidden" value="1"/>
 <table width="400" >
   
   <tr>

@@ -26,5 +26,5 @@ public interface OrderinDAO {
 		public boolean deleteOrderins(String oiid);
 		
 		//条件查找进货订单，返回Result_in类型
-		public List<Result_in> Result(String gname,String b_date,String e_date,String user,String customer,String note);
+		public List<Result_in> Result(String gname,String b_date,String e_date,String user,String customer,String note,int beginIndex,int num);
 }

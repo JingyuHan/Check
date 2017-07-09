@@ -137,7 +137,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</tr>
 	</s:iterator>
 	<!-- 遍历结束 -->
-</table>
+</table><br><br>
+<div>
+	<s:if test='%{#session.oi_pageNow != "1"}'>
+		<a href="<%=path%>/orders/Orderin_Result.action?flag=1&oi_pageLast=<s:property value="#session.oi_pageLast"/>">上一页</a>
+	</s:if>
+	<s:if test='%{#session.oi_pageNext != "0"}'>
+		<a href="<%=path%>/orders/Orderin_Result.action?flag=1&oi_pageLast=0&oi_pageNext=<s:property value="#session.oi_pageNext"/>">下一页</a>
+	</s:if>
+</div>
 </div>
 </body>
 </html>

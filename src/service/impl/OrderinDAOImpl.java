@@ -29,7 +29,7 @@ public class OrderinDAOImpl implements OrderinDAO{
 		try{
 			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
 			tx = session.beginTransaction();
-			hql = "from Orders where type = true";
+			hql = "from Orders where type = true order by oid";
 			Query query = session.createQuery(hql);
 			query.setFirstResult(beginIndex);
 			query.setMaxResults(num);
@@ -241,23 +241,16 @@ public class OrderinDAOImpl implements OrderinDAO{
 
 	
 	
-	public List<Result_in> Result(String gname,String b_date,String e_date,String user,String customer,String note) {
+	public List<Result_in> Result(String gname,String b_date,String e_date,String user,String customer,String note,int beginIndex,int num) {
 		List<Result_in> rilist =new ArrayList<Result_in>();
-		int flag = 0;
+
 		
-			List<Orders> olist = queryOrderinLike(b_date,e_date,user,customer,note);
+			List<Orders> olist = queryOrderinLike(b_date,e_date,user,customer,note,gname,beginIndex,num);
 			for(Orders o:olist){
 				List<Order_in> oilist = queryOrderinByOiid(o.getOid());
-				for(Order_in oi:oilist){
-					if(oi.getGname().matches(".*"+gname+".*")){
-						flag++;
-					}
-				}
 				
-				if(flag>0){
 					rilist.add(new Result_in(oilist,o));
-				}
-				flag=0;
+				
 			}
 		
 		
@@ -267,7 +260,7 @@ public class OrderinDAOImpl implements OrderinDAO{
 	}
 	
 	//在总订单表中模糊查找符合条件的进货订单
-	public List<Orders> queryOrderinLike(String b_date,String e_date,String user,String customer,String note){
+	public List<Orders> queryOrderinLike(String b_date,String e_date,String user,String customer,String note,String gname,int beginIndex,int num){
 		Transaction tx = null;
 		List<Orders> list = null;
 		String hql = "";
@@ -275,9 +268,10 @@ public class OrderinDAOImpl implements OrderinDAO{
 		try{
 			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
 			tx = session.beginTransaction();
-			hql = "from Orders where type = true and user like '%"+user+"%' and customer like '%"+customer+"%' and date between '"+b_date+"' and '"+e_date+"' and note like '%"+note+"%'";
+			hql = "from Orders where type = true and user like '%"+user+"%' and customer like '%"+customer+"%' and date between '"+b_date+"' and '"+e_date+"' and note like '%"+note+"%' and oid in(SELECT oiid from Order_in WHERE gname LIKE '%"+gname+"%') order by oid";
 			Query query = session.createQuery(hql);
-			
+			query.setFirstResult(beginIndex);
+			query.setMaxResults(num);
 			list = query.list();
 			
 			tx.commit();

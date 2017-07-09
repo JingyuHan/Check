@@ -29,7 +29,7 @@ public class OrderoutDAOImpl implements OrderoutDAO{
 		try{
 			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
 			tx = session.beginTransaction();
-			hql = "from Orders where type = false";
+			hql = "from Orders where type = false order by oid";
 			Query query = session.createQuery(hql);
 			query.setFirstResult(beginIndex);
 			query.setMaxResults(num);
@@ -233,24 +233,16 @@ public class OrderoutDAOImpl implements OrderoutDAO{
 		}
 	}
 	
-	public List<Result_out> Result(String gname,String b_date,String e_date,String user,String customer,String note) {
+	public List<Result_out> Result(String gname,String b_date,String e_date,String user,String customer,String note,int beginIndex,int num) {
 		List<Result_out> rolist =new ArrayList<Result_out>();
-		int flag = 0;
 		
-			List<Orders> olist = queryOrderoutLike(b_date,e_date,user,customer,note);
-			for(Orders o:olist){
-				List<Order_out> oolist = queryOrderoutByOoid(o.getOid());
-				for(Order_out oo:oolist){
-					if(oo.getGname().matches(".*"+gname+".*")){
-						flag++;
-					}
-				}
-				
-				if(flag>0){
-					rolist.add(new Result_out(oolist,o));
-				}
-				flag=0;
-			}
+		List<Orders> olist = queryOrderoutLike(b_date,e_date,user,customer,note,gname,beginIndex,num);
+		for(Orders o:olist){
+			List<Order_out> oolist = queryOrderoutByOoid(o.getOid());
+			
+				rolist.add(new Result_out(oolist,o));
+			
+		}
 		
 		
 		
@@ -259,7 +251,7 @@ public class OrderoutDAOImpl implements OrderoutDAO{
 	}
 	
 	//在总订单表中模糊查找符合条件的进货订单
-	public List<Orders> queryOrderoutLike(String b_date,String e_date,String user,String customer,String note){
+	public List<Orders> queryOrderoutLike(String b_date,String e_date,String user,String customer,String note,String gname,int beginIndex,int num){
 		Transaction tx = null;
 		List<Orders> list = null;
 		String hql = "";
@@ -267,9 +259,10 @@ public class OrderoutDAOImpl implements OrderoutDAO{
 		try{
 			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
 			tx = session.beginTransaction();
-			hql = "from Orders where type = false and user like '%"+user+"%' and customer like '%"+customer+"%' and date between '"+b_date+"' and '"+e_date+"' and note like '%"+note+"%'";
+			hql = "from Orders where type = false and user like '%"+user+"%' and customer like '%"+customer+"%' and date between '"+b_date+"' and '"+e_date+"' and note like '%"+note+"%' and oid in(SELECT ooid from Order_out WHERE gname LIKE '%"+gname+"%') order by oid";
 			Query query = session.createQuery(hql);
-			
+			query.setFirstResult(beginIndex);
+			query.setMaxResults(num);
 			list = query.list();
 			
 			tx.commit();

@@ -111,7 +111,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- 遍历开始 -->
 	<s:iterator value="#session.orderout_list" var="orderout">
 	<tr class="list">
-		<td><s:property value="#orderout.oid"/></td>
+		<td><a href="<%=path%>/orders/Orderout_detail.action?ooid=<s:property value="#orderout.oid"/>"><s:property value="#orderout.oid"/></a></td>
 		<td><s:property value="#orderout.customer"/></td>
 		<td><s:property value="#orderout.price_sh"/></td>
 		<td><s:property value="#orderout.price_ac"/></td>

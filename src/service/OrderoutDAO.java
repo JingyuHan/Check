@@ -25,5 +25,5 @@ public interface OrderoutDAO {
 		public boolean deleteOrderouts(String ooid);
 		
 		//条件查找售货订单，返回Result_out类型
-		public List<Result_out> Result(String gname,String b_date,String e_date,String user,String customer,String note);
+		public List<Result_out> Result(String gname,String b_date,String e_date,String user,String customer,String note,int beginIndex,int num);
 }
