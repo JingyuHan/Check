@@ -80,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- 导航空白 -->
 	<div id='naviDiv'>
 		<span><img src="../images/arror.gif" width="7" height="11" border="0" alt=""></span>&nbsp;订单管理<span>&nbsp;
-		<span><img src="../images/arror.gif" width="7" height="11" border="0" alt=""></span>&nbsp;<a href="<%=path%>/orders/Orderin_query.action?oi_pageLast=0&oi_pageNext=1">订单列表</a><span>&nbsp;
+		<span><img src="../images/arror.gif" width="7" height="11" border="0" alt=""></span>&nbsp;<a href="<%=path%>/orders/Orderin_query.action?oi_pageLast=0&oi_pageNext=1">进货订单列表</a><span>&nbsp;
 	</div>
 </div>
 <div id="tips">

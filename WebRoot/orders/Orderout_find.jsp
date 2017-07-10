@@ -212,7 +212,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <strong>筛选售货订单</strong>
 <br>
 <br>
-<form name="findForm" action="<%=path%>/orders/Orderout_Result.action" method="post">
+<form name="findForm" action="<%=path%>/orders/Orderout_Result.action" method="post" onsubmit='document.getElementById("submit").value="稍等……";document.getElementById("submit").disabled="true"'>
 <input name="flag" type="hidden" value="0"/>
 <input name="oo_pageLast" type="hidden" value="0"/>
 <input name="oo_pageNext" type="hidden" value="1"/>
@@ -249,7 +249,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
  
   <tr>
-    <td colspan="2" align="center"><input class="button" type="submit" value="查找"></td>
+    <td colspan="2" align="center"><input class="button" type="submit" value="查找" id="submit"></td>
   </tr>
 </table>
 </form>

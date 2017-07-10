@@ -30,6 +30,8 @@ public class UsersAction extends SuperAction implements ModelDriven<Users>{
 		if(list!=null && list.size()>0){
 			session.setAttribute("users_list", list);
 			
+		}else{
+			session.removeAttribute("users_list");
 		}
 		return "query_success";
 		

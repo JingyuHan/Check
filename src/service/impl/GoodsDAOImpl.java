@@ -53,7 +53,8 @@ public class GoodsDAOImpl implements GoodsDAO{
 			
 			hql = "from Goods where gname like '%"+gname+"%'";
 			Query query = session.createQuery(hql);
-			
+			query.setFirstResult(0);
+			query.setMaxResults(10);
 			list = query.list();
 			
 			tx.commit();

@@ -144,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <strong>查找厂家资料</strong>
 <br>
 <br>
-<form name="findForm" action="<%=path%>/customer/Sellers_findBySname.action" method="post">
+<form name="findForm" action="<%=path%>/customer/Sellers_findBySname.action" method="post" onsubmit='document.getElementById("submit").value="稍等……";document.getElementById("submit").disabled="true"'>
 <table width="400" >
   <tr>
     <td width="30%">厂家名称:</td>
@@ -152,7 +152,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </tr>
  
   <tr>
-    <td colspan="2" align="center"><input class="button" type="submit" value="查找"></td>
+    <td colspan="2" align="center"><input class="button" type="submit" value="查找" id="submit"></td>
   </tr>
 </table>
 </form>

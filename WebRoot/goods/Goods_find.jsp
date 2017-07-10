@@ -134,7 +134,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="navi">
 	<div id='naviDiv'>
 		<span><img src="../images/arror.gif" width="7" height="11" border="0" alt=""></span>&nbsp;货品管理<span>&nbsp;
-		<span><img src="../images/arror.gif" width="7" height="11" border="0" alt=""></span>&nbsp;<a href="<%=path%>/goods/Goods_query.action">货品列表</a><span>&nbsp;
+		<span><img src="../images/arror.gif" width="7" height="11" border="0" alt=""></span>&nbsp;<a href="<%=path%>/goods/Goods_query.action?g_pageLast=0&g_pageNext=1">货品列表</a><span>&nbsp;
 	</div>
 </div>
 <div id="tips">
@@ -144,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <strong>查找货品资料</strong>
 <br>
 <br>
-<form name="findForm" action="<%=path%>/goods/Goods_findByGname.action" method="post">
+<form name="findForm" action="<%=path%>/goods/Goods_findByGname.action" method="post" onsubmit='document.getElementById("submit").value="稍等……";document.getElementById("submit").disabled="true"'>
 <table width="400" >
   <tr>
     <td width="30%">货品名称:</td>
@@ -152,7 +152,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </tr>
  
   <tr>
-    <td colspan="2" align="center"><input class="button" type="submit" value="查找"></td>
+    <td colspan="2" align="center"><input class="button" type="submit" value="查找" id="submit"></td>
   </tr>
 </table>
 </form>

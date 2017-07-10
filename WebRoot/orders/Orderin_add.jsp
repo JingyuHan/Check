@@ -175,7 +175,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="navi">
 	<div id='naviDiv'>
 		<span><img src="../images/arror.gif" width="7" height="11" border="0" alt=""></span>&nbsp;订单管理<span>&nbsp;
-		<span><img src="../images/arror.gif" width="7" height="11" border="0" alt=""></span>&nbsp;<a href="<%=path%>/orders/Orderin_query.action?oi_pageLast=0&oi_pageNext=1">进货订单</a><span>&nbsp;
+		<span><img src="../images/arror.gif" width="7" height="11" border="0" alt=""></span>&nbsp;<a href="<%=path%>/orders/Orderin_query.action?oi_pageLast=0&oi_pageNext=1">进货订单列表</a><span>&nbsp;
 	</div>
 </div>
 <div id="tips">
@@ -221,7 +221,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<td colspan="2" align="center">
 			  <span id="totle">总计：0元</span><br><br>
 			  <span>实付款：</span><input type="text" name="price_ac"/><br>
-			  <input class="button" type="submit" value="完成"/><br><br>
+			  <input class="button" type="submit" value="完成" id="submit"/><br><br>
 		</td>
 		</form>	  
 	</tr>
@@ -281,6 +281,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			return false;
 		}
 		document.getElementById("list").value=list+total;  
+		 document.getElementById("submit").value="稍等……";
+		 document.getElementById("submit").disabled="true";
 		return true;
 	}
 </script>

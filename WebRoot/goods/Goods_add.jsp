@@ -134,7 +134,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="navi">
 	<div id='naviDiv'>
 		<span><img src="../images/arror.gif" width="7" height="11" border="0" alt=""></span>&nbsp;货品管理<span>&nbsp;
-		<span><img src="../images/arror.gif" width="7" height="11" border="0" alt=""></span>&nbsp;<a href="<%=path%>/goods/Goods_query.action">货品列表</a><span>&nbsp;
+		<span><img src="../images/arror.gif" width="7" height="11" border="0" alt=""></span>&nbsp;<a href="<%=path%>/goods/Goods_query.action?g_pageLast=0&g_pageNext=1">货品列表</a><span>&nbsp;
 	</div>
 </div>
 <div id="tips">
@@ -144,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <strong>添加货品资料</strong>
 <br>
 <br>
-<form name="addForm" action="<%=path%>/goods/Goods_add.action" method="post" onsubmit='if(document.getElementById("price").value==""||document.getElementById("amount").value==""||document.getElementById("name").value=="") {alert("请输入相关数据！");return false;} '>
+<form name="addForm" action="<%=path%>/goods/Goods_add.action" method="post" onsubmit='if(document.getElementById("price").value==""||document.getElementById("amount").value==""||document.getElementById("name").value=="") {alert("请输入相关数据！");return false;}else{document.getElementById("submit").value="稍等……";document.getElementById("submit").disabled="true"} '>
 <table width="400" >
   <tr>
     <td width="30%">名称：</td>
@@ -160,7 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </td>
   </tr>
   <tr>
-    <td colspan="2" align="center"><input class="button" type="submit" value="添加"></td>
+    <td colspan="2" align="center"><input class="button" type="submit" value="添加" id="submit"></td>
   </tr>
 </table>
 </form>

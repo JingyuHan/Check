@@ -229,7 +229,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<td colspan="2" align="center">
 			  <span id="totle">总计：0元</span><br><br>
 			  <span>实付款：</span><input type="text" name="price_ac" id="price_ac"/><br>
-			  <input class="button" type="submit" value="完成"/><br><br>
+			  <input class="button" type="submit" value="完成" id="submit"/><br><br>
 		</td>
 		</form>	  
 	</tr>
@@ -294,6 +294,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			return false;
 		}
 		document.getElementById("list").value=list+total;  
+		document.getElementById("submit").value="稍等……";
+		 document.getElementById("submit").disabled="true";
 		return true;
 	}
 </script>

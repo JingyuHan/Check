@@ -52,7 +52,11 @@ public class GoodsAction extends SuperAction{
 				session.setAttribute("g_pageNext",0);
 			}
 			session.setAttribute("goods_list", list);
+		}else{
+			session.removeAttribute("goods_list");
+			session.setAttribute("g_pageNext",0);
 		}
+		
 		return "query_success";
 		
 	}

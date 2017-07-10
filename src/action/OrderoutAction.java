@@ -48,6 +48,9 @@ public class OrderoutAction extends SuperAction{
 				session.setAttribute("oo_pageNext",0);
 			}
 			session.setAttribute("orderout_list", list);
+		}else{
+			session.removeAttribute("orderout_list");
+			session.setAttribute("oo_pageNext",0);
 		}
 		
 		
@@ -86,6 +89,7 @@ public class OrderoutAction extends SuperAction{
 		}
 		
 		public String Result() throws Exception{
+			
 			//分页显示，每页的内容数目
 			int EachPageContentNum = 2;
 			String gname = null;
@@ -149,6 +153,9 @@ public class OrderoutAction extends SuperAction{
 					session.setAttribute("oo_pageNext",0);
 				}
 				session.setAttribute("Result_list", rolist);
+			}else{
+				session.removeAttribute("Result_list");
+				session.setAttribute("oo_pageNext",0);
 			}
 			
 			return "out_Result_success";

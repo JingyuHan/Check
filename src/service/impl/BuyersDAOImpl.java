@@ -51,7 +51,8 @@ public class BuyersDAOImpl implements BuyersDAO{
 			
 			hql = "from Buyers where bname like '%"+bname+"%'";
 			Query query = session.createQuery(hql);
-			
+			query.setFirstResult(0);
+			query.setMaxResults(10);
 			list = query.list();
 			
 			tx.commit();

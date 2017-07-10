@@ -27,6 +27,8 @@ public class SellersAction extends SuperAction{
 		if(list!=null && list.size()>0){
 			session.setAttribute("sellers_list", list);
 			
+		}else{
+			session.removeAttribute("sellers_list");
 		}
 		return "sell_query_success";
 		

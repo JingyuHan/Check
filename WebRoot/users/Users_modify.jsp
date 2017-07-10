@@ -80,8 +80,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <div id="navi">
 	<div id='naviDiv'>
-		<span><img src="../images/arror.gif" width="7" height="11" border="0" alt=""></span>&nbsp;货品管理<span>&nbsp;
-		<span><img src="../images/arror.gif" width="7" height="11" border="0" alt=""></span>&nbsp;<a href="<%=path%>/students/Students_query.action">货品列表</a><span>&nbsp;
+		<span><img src="../images/arror.gif" width="7" height="11" border="0" alt=""></span>&nbsp;管理员管理<span>&nbsp;
+		<span><img src="../images/arror.gif" width="7" height="11" border="0" alt=""></span>&nbsp;<a href="<%=path%>/users/Users_query.action">管理员列表</a><span>&nbsp;
 	</div>
 </div>
 <div id="tips">
@@ -92,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <br>
 <br>
 
-<form name="modifyForm" action="<%=path%>/users/Users_save.action" method="post" onsubmit='if(document.getElementById("password").value==""||document.getElementById("username").value==""){alert("请输入相关数据！");return false;}'>
+<form name="modifyForm" action="<%=path%>/users/Users_save.action" method="post" onsubmit='if(document.getElementById("password").value==""||document.getElementById("username").value==""){alert("请输入相关数据！");return false;}else{document.getElementById("submit").value="稍等……";document.getElementById("submit").disabled="true"}'>
 	<input type="hidden" name="uid" value='<s:property value="#session.modify_good.uid"/>'/>
 <table width="400" >
 	
@@ -106,7 +106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        <td><input type="text" name="passowrd" id="password" value='<s:property value="#session.modify_good.password"/>'/></td>
   </tr>
   <tr>
-    <td colspan="2" align="center"><input class="button" type="submit" value="修改"></td>
+    <td colspan="2" align="center"><input class="button" type="submit" value="修改" id="submit"></td>
   </tr>
 </table>
 </form>

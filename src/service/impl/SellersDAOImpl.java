@@ -51,7 +51,8 @@ public class SellersDAOImpl implements SellersDAO{
 			
 			hql = "from Sellers where sname like '%"+sname+"%'";
 			Query query = session.createQuery(hql);
-			
+			query.setFirstResult(0);
+			query.setMaxResults(10);
 			list = query.list();
 			
 			tx.commit();

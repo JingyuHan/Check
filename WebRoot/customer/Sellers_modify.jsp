@@ -147,7 +147,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <br>
 <br>
 
-<form name="modifyForm" action="<%=path%>/customer/Sellers_save.action" method="post" onsubmit='if(document.getElementById("address").value==""||document.getElementById("tel").value==""||document.getElementById("name").value==""){alert("请输入相关信息！");return false;}'>
+<form name="modifyForm" action="<%=path%>/customer/Sellers_save.action" method="post" onsubmit='if(document.getElementById("address").value==""||document.getElementById("tel").value==""||document.getElementById("name").value==""){alert("请输入相关信息！");return false;}else{document.getElementById("submit").value="稍等……";document.getElementById("submit").disabled="true"}'>
 <table width="400" >
 	<input type="hidden" name="sid" value='<s:property value="#session.modify_good.sid"/>'/>
 
@@ -164,7 +164,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <td><input type="text" name="address" value='<s:property value="#session.modify_good.address"/>' /></td>
   </tr>
   <tr>
-    <td colspan="2" align="center"><input class="button" type="submit" value="修改"></td>
+    <td colspan="2" align="center"><input class="button" type="submit" value="修改" id="submit"></td>
   </tr>
 </table>
 </form>

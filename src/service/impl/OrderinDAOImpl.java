@@ -2,7 +2,9 @@ package service.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
@@ -264,11 +266,36 @@ public class OrderinDAOImpl implements OrderinDAO{
 		Transaction tx = null;
 		List<Orders> list = null;
 		String hql = "";
-		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try{
 			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
 			tx = session.beginTransaction();
-			hql = "from Orders where type = true and user like '%"+user+"%' and customer like '%"+customer+"%' and date between '"+b_date+"' and '"+e_date+"' and note like '%"+note+"%' and oid in(SELECT oiid from Order_in WHERE gname LIKE '%"+gname+"%') order by oid";
+			hql = "from Orders where type = true and user like '%"+user+"%' and customer like '%"+customer+"%'";
+			if(!"".equals(b_date)){
+				if(!"".equals(e_date)){
+					Date BDate = sdf.parse(b_date);
+					Date EDate = sdf.parse(e_date);
+					if(EDate.after(BDate)){
+						hql+=" and date between '"+b_date+"' and '"+e_date+"'";
+					}else if(EDate.before(BDate)){
+						hql+=" and date between '"+e_date+"' and '"+b_date+"'";
+					}else{
+						Calendar cal = new GregorianCalendar();
+						cal.setTime(EDate);
+						cal.add(Calendar.DATE, 1);
+						EDate = cal.getTime();
+						e_date = sdf.format(EDate);
+						hql+=" and date between '"+b_date+"' and '"+e_date+"'";
+					}
+				}else{
+					hql+=" and date > '"+b_date+"'";
+				}
+			}else{
+				if(!"".equals(e_date)){
+					hql+=" and date < '"+e_date+"'";
+				}
+			}
+			hql +=" and note like '%"+note+"%' and oid in(SELECT oiid from Order_in WHERE gname LIKE '%"+gname+"%') order by oid";
 			Query query = session.createQuery(hql);
 			query.setFirstResult(beginIndex);
 			query.setMaxResults(num);

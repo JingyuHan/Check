@@ -49,6 +49,9 @@ public class OrderinAction extends SuperAction{
 				session.setAttribute("oi_pageNext",0);
 			}
 			session.setAttribute("orderin_list", list);
+		}else{
+			session.removeAttribute("orderin_list");
+			session.setAttribute("oi_pageNext",0);
 		}
 		
 		
@@ -152,6 +155,9 @@ public class OrderinAction extends SuperAction{
 				session.setAttribute("oi_pageNext",0);
 			}
 			session.setAttribute("Result_list", rilist);
+		}else{
+			session.removeAttribute("Result_list");
+			session.setAttribute("oi_pageNext",0);
 		}
 		
 		return "in_Result_success";
